@@ -1,0 +1,12 @@
+@font-face {
+    font-family: ShareTech;
+    src: url(../assets/fonts/Share_Tech/ShareTech-Regular.ttf);
+}
+
+h1 {
+    font-family: ShareTech;
+}
+
+.prayer-time{
+    font-family: ShareTech;
+}

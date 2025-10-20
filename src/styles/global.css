@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "AmiriQuran";
+  src: url(../assets/Amiri_Quran/AmiriQuran-Regular.ttf);
+}
+
+.font-arabic {
+  font-family: "AmiriQuran", serif;
+  line-height: 2;
+}
+
+.font-size-control {
+  user-select: none;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+
+/* style section page show surah */

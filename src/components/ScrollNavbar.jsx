@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
+import IconThemeDark from "../assets/image/icon-theme-light.svg"; 
 
 const ScrollNavbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
 
+  // ✅ Pindahkan ke luar useEffect
+  const handleSmoothScroll = (e, id) => {
+    e.preventDefault();
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate scroll percentage
       const scrollHeight =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
       const scrollPosition = document.documentElement.scrollTop;
       const scrollPercentage = (scrollPosition / scrollHeight) * 100;
-        const handleSmoothScroll = (e, id) => {
-  e.preventDefault();
-  document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-};
-      // Show navbar after scrolling 10%
+
       if (scrollPercentage > 10) {
         setShowNavbar(true);
       } else {
@@ -24,10 +26,7 @@ const ScrollNavbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -38,19 +37,32 @@ const ScrollNavbar = () => {
     >
       <div className="flex justify-between items-center w-11/12 max-w-6xl mx-auto py-4 px-6 bg-blue-200 rounded-2xl shadow-md border border-blue-100">
         {/* Brand */}
-        <a
-          href="/"
-          className="text-2xl font-extrabold text-[#2F8DB5] tracking-tight hover:text-[#1b6f8c] transition-all"
-        >
-          My Muslim Assistant
-        </a>
+
+  <div className="relative flex items-center">
+  <div className="flex-shrink-0 w-12 h-10 flex items-center justify-center">
+    <img
+      src={IconThemeDark}
+      alt="Dark Theme Icon"
+      className="w-48 h-48 object-contain"
+    />
+  </div>
+  <a
+    href="/"
+    className="text-2xl font-extrabold text-[#308299] tracking-tight hover:text-[#1b6f8c] transition-all leading-none"
+  >
+    My Muslim Assistant
+  </a>
+</div>
+      
+  
+
 
         {/* Navigation Links */}
         <nav className="hidden md:flex gap-8 text-lg font-semibold text-[#2F8DB5]">
           {[
-            { name: "Home", href: "#PrayerTimeSection" },
+            { name: "Shalat", href: "#PrayerTimeSection" },
             { name: "Game", href: "#" },
-            { name: "Al-Quran", href: "#QuranSection" },
+            { name: "Qur'an", href: "#QuranSection" },
             { name: "Contact", href: "#contact-me" },
           ].map((link, idx) => (
             <a
@@ -66,7 +78,7 @@ const ScrollNavbar = () => {
           ))}
         </nav>
 
-        {/* Mobile Menu Button (optional) */}
+        {/* Mobile Menu Button */}
         <button className="md:hidden text-[#2F8DB5] hover:text-[#1b6f8c] transition-all">
           <svg
             xmlns="http://www.w3.org/2000/svg"

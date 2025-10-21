@@ -5,6 +5,7 @@ import {
   IoLogoLinkedin,
 } from "react-icons/io5";
 import clsx from "clsx";
+import IconThemeLight from "../assets/image/icon-theme-dark.svg";
 
 const footer = () => {
   const buttons = [
@@ -16,7 +17,7 @@ const footer = () => {
     {
       icon: <IoLogoInstagram size={25} />,
       color: "pink-500",
-      url: "https://www.instagram.com/masdanz/",
+      url: "https://www.instagram.com/zhnkys_36?utm_source=qr&igsh=Y3dibWtseW82YWoz",
     },
     {
       icon: <IoLogoGithub size={25} />,
@@ -32,17 +33,30 @@ const footer = () => {
 
   return (
     <>
-      <footer id="contact-me" className="bg-blue-700 text-white py-8 px-6 mt-10">
+      <footer
+        id="contact-me"
+        className="bg-blue-700 text-white py-8 px-6 mt-10"
+      >
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between gap-8">
           {/* Section kiri */}
           <div className="w-full lg:w-1/3">
-            <h1 className="text-3xl font-semibold mb-4">MY MUSLIM ASSISTANT</h1>
+            <div className="flex justify-start items-center p-0">
+              <img
+                src={IconThemeLight}
+                alt="Light Theme Icon"
+                className="w-24 h-24 object-contain"
+              />
+              <h1 className="text-3xl font-semibold text-gray-50 tracking-wide leading-none">
+                MY MUSLIM ASSISTANT
+              </h1>
+            </div>
+
             <div className="flex flex-col space-y-2 text-md">
               {[
-                { name: "Home", href: "/" },
-                { name: "Game Quran", href: "#" },
-                { name: "Daftar Surah", href: "#" },
-                { name: "Contact Me", href: "#" },
+                { name: "Jadwal Shalat", href: "#PrayerTimeSection" },
+                { name: "Game", href: "#" },
+                { name: "Daftar Surah", href: "#QuranSection" },
+                { name: "Contact Me", href: "#contact-me" },
               ].map((link, idx) => (
                 <a
                   key={idx}

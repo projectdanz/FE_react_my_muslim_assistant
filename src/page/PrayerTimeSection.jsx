@@ -3,7 +3,7 @@ import PrayerTime from "../components/PrayerTime";
 
 const PrayerTimeSection = () => {
     return (
-        <div className="flex flex-col items-center mt-10">  
+        <div id="PrayerTimeSection">  
             <Time />
             <PrayerTime />
         </div>

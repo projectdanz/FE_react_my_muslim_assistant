@@ -190,7 +190,7 @@ const QuranSurah = () => {
     <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-6 shadow-2xl border border-blue-100">
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-bold bg-blue-500 bg-clip-text text-transparent">
           Daftar Surah
         </h2>
       </div>

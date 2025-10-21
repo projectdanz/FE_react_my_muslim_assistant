@@ -2,7 +2,7 @@ import QuranSurah from '../components/QuranSurah.jsx';
 
 const QuranSection = () => {
   return (
-    <div>
+    <div id='QuranSection'>
       <QuranSurah />
     </div>
   );

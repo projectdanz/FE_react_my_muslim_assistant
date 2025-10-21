@@ -5,6 +5,13 @@ import QuranSection from "./page/QuranSection.jsx";
 import ShowSurah from "./page/ShowSurah.jsx";
 import "./index.css";
 
+createRoot(document.getElementById('root')).render(
+   <BrowserRouter>
+      <Routes>
+          <Route path="/prayer-time" element={<PrayerTimeSection />} />        
+      </Routes>
+    </BrowserRouter>
+)
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>

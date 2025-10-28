@@ -1,13 +1,16 @@
-import Time from "../components/Time";
+import GetLocation from "../components/GetLocation";
 import PrayerTime from "../components/PrayerTime";
+import { useState } from "react";
 
-const PrayerTimeSection = () => {
-    return (
-        <div className="flex flex-col items-center mt-10">  
-            <Time />
-            <PrayerTime />
-        </div>
-    )
-}
+const Home = () => {
+  const [selectedCity, setSelectedCityId] = useState(localStorage.getItem("selectedCity"));
 
-export default PrayerTimeSection
+  return (
+    <>
+      <GetLocation setSelectedCityId={setSelectedCityId} />
+      <PrayerTime selectedCity={selectedCity} />
+    </>
+  );
+};
+
+export default Home;

@@ -8,7 +8,7 @@ import PrayerTimeSection from './page/PrayerTimeSection'
 createRoot(document.getElementById('root')).render(
    <BrowserRouter>
       <Routes>
-          <Route path="/prayer-time" element={<PrayerTimeSection />} />        
+          <Route path="/" element={<PrayerTimeSection />} />        
       </Routes>
     </BrowserRouter>
 )

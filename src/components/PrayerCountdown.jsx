@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 
 const PrayerCountdown = ({ prayerTimes, jadwal, getNextPrayer }) => {
   const [countdown, setCountdown] = useState("");
+  const nameCity = localStorage.getItem("selectedCityName");
+  const date = new Date()
+
+  const formatted = new Intl.DateTimeFormat("id-ID", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  }).format(date)
 
   // Hitung waktu menuju salat berikutnya
   const calculateCountdown = (times) => {
@@ -42,9 +51,15 @@ const PrayerCountdown = ({ prayerTimes, jadwal, getNextPrayer }) => {
     .find((p) => p.toLowerCase() === getNextPrayer(prayerTimes)?.name);
 
   return (
-    <p className="text-2xl sm:text-3xl font-semibold mb-6 text-gray-700 text-center">
-      <span className="font-bold">{countdown}</span> until {""}
-      <span className="text-[#2F8DB5]">{nextPrayerName}</span>
+    <p className="flex flex-col text-center justify-center text-2xl sm:text-3xl font-semibold mb-6 text-gray-700">
+      <div className="flex flex-col sm:flex-row justify-center">
+        <p className="text-[19px] text-gray-500 sm:text-2xl sm:font-bold sm:text-gray-700">{ nameCity }</p>
+        <p className="text-[19px] text-gray-500 hidden sm:inline sm:text-2xl sm:font-bold sm:text-gray-700">&nbsp; - &nbsp;</p>
+        <p className="text-[19px] text-gray-500  mb-5 sm:text-2xl sm:font-bold sm:text-gray-700">{ formatted }</p>
+      </div>
+      <div className="w-full bg-[#2F8DB5] px-10 py-2 rounded-2xl sm:px-45 sm:py-5">
+      <p className="text-[19px] font-normal text-white sm:text-2xl sm:font-bold">{ countdown } until { nextPrayerName }</p>
+      </div>
     </p>
   );
 };

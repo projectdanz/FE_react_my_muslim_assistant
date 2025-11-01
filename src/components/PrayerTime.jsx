@@ -75,9 +75,9 @@ const PrayerTime = ({ selectedCity }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-8 mt-10 mb-10 px-4">
+    <div className="flex flex-col items-center gap-8 mt-5 sm:mt-10 mb-10 px-4 sm:px-10">
       {prayerTimes && (
-        <div className="flex flex-col justify-center items-center w-11/12 max-w-5xl bg-gray-50 p-6 rounded-3xl border border-gray-200 shadow-xl">
+        <div className="flex flex-col justify-center items-center w-full bg-gray-50 p-6 rounded-3xl border border-gray-200 shadow-xl">
           
           {/* Countdown */}
           <PrayerCountdown
@@ -87,7 +87,7 @@ const PrayerTime = ({ selectedCity }) => {
           />
 
           {/* Grid jadwal shalat */}
-          <div className="flex flex-wrap justify-center gap-8 w-full">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 w-full">
             {jadwal.map((item) => (
               <div
                 key={item}

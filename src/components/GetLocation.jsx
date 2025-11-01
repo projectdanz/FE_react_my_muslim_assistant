@@ -41,7 +41,7 @@ const GetLocation = ({ setSelectedCityId }) => {
   });
 
   const handleCitySelect = async (cityId, cityName) => {
-  setSelectedCity(cityId);
+  setSelectedCity(cityName);
   setSearchQuery(cityName);
   setShowSuggestions(false);
 

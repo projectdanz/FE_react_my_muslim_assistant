@@ -12,6 +12,12 @@ const ButtonContact = () => {
     Github: "hover:border-black hover:text-black",
     Linkedin: "hover:border-blue-700 hover:text-blue-700",
   };
+  const colorMobile = {
+    Whatsapp: "bg-white text-green-600",
+    Instagram: "bg-white text-pink-500",
+    Github: "bg-white text-black",
+    Linkedin: "bg-white text-blue-700",
+  };
   const icon = [
     {
       name: "Whatsapp",
@@ -45,9 +51,12 @@ const ButtonContact = () => {
             key={index}
             className={`
               w-10 h-10 flex items-center justify-center
-              rounded-full border border-transparent text-gray-700
-              ${colorMap[btn.name]}
-            } hover:bg-white
+              rounded-full border border-transparent 
+              ${colorMobile[btn.name]}
+              sm:text-gray-700
+              sm:${colorMap[btn.name]}
+             sm:hover:bg-white
+             sm:bg-gray-100
               transition-all duration-200
             `}
             onClick={() => window.open(btn.url, "_blank")}

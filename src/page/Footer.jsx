@@ -9,7 +9,7 @@ const footer = () => {
               ]
   return (
     <>
-      <div className="bg-blue-700 text-white py-8 px-6 mt-10">
+      <div className="bg-blue-700 text-white py-8 px-6 mt-10 rounded-t-3xl">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between gap-8">
           {/* Section kiri */}
           <div className="w-full lg:w-1/3">

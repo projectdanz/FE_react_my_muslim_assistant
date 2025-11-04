@@ -237,14 +237,7 @@ const ListSurah = ({ searchQuery, selectedJuz }) => {
           </div>
         ))}
       </div>
-      {/* Empty State */}
-      {filteredSurahs.length === 0 && (
-        <div className="text-center py-12">
-          <div className="text-gray-400 text-6xl mb-4">📖</div>
-          <div className="text-gray-500 text-lg font-medium">Tidak ada surah yang ditemukan</div>
-          <div className="text-gray-400 text-sm mt-2">Coba ubah kata kunci pencarian atau filter</div>
-        </div>
-      )}
+      
     </>
   );
 };

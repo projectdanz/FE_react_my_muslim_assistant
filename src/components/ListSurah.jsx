@@ -199,7 +199,6 @@ const ListSurah = ({ searchQuery, selectedJuz }) => {
             className="group bg-white rounded-2xl p-6 transition-all duration-300 cursor-pointer border border-blue-100 relative overflow-hidden"
           >
             {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-50 to-indigo-50 rounded-bl-3xl opacity-50"></div>
             
             <div className="flex justify-between items-start mb-4 relative z-10">
               <div className="flex-1">

@@ -1,7 +1,7 @@
 import GetLocation from "../components/GetLocation";
 import PrayerTime from "../components/PrayerTime";
 import { useState } from "react";
-import iconDark from "../assets/image/Muslim/icon-dark.svg";
+import iconDark from "../assets/image/icon-dua-dark.svg";
 
 const Home = () => {
   const [selectedCity, setSelectedCityId] = useState(

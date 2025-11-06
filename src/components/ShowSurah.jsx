@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { IoSettingsSharp } from "react-icons/io5";
 import FooterSection from "../page/Footer";
-import iconLight from "../assets/image/icon-theme-dark.svg";
+import iconLight from "../assets/image/icon-satu-theme-dark.svg";
 import "../styles/global.css";
 
 const ShowSurah = () => {
@@ -98,11 +98,18 @@ const ShowSurah = () => {
         <div className="flex md:grid md:grid-cols-3 items-center w-full">
           {/* Kiri */}
           <div className="flex items-center">
-            <a href="/">
-              <h1 className="hidden md:block text-lg font-semibold text-gray-200">
+            <a href="/" className="flex items-center">
+              {/* Icon (selalu tampil) */}
+              <img
+                src={iconLight}
+                alt="Logo"
+                className="w-10 h-10 md:w-16 md:h-16 mr-2"
+              />
+
+              {/* Text (hanya tampil di laptop/desktop) */}
+              <span className="hidden md:block text-lg font-semibold text-gray-200">
                 My Muslim Assistant
-              </h1>
-              <img src={iconLight} alt="Logo" className="md:hidden w-16 h-16 mr-2" />
+              </span>
             </a>
           </div>
 

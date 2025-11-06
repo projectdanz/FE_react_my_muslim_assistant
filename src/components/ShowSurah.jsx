@@ -94,7 +94,7 @@ const ShowSurah = () => {
   return (
     <>
       {/* Navigation Controls */}
-      <div className="bg-blue-700 w-full fixed z-[999] h-16 md:h-20 top-0 left-0 shadow-md flex flex-col justify-center px-3 md:px-6 py-2">
+      <div className="bg-[#2F8DB5] w-full fixed z-[999] h-16 md:h-20 top-0 left-0 shadow-md flex flex-col justify-center px-3 md:px-6 py-2">
         <div className="flex md:grid md:grid-cols-3 items-center w-full">
           {/* Kiri */}
           <div className="flex items-center">

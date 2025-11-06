@@ -2,18 +2,20 @@ import ButtonContact from "../components/ButtonContact";
 
 const footer = () => {
   const links = [
-                { name: "Home", href: "/" },
-                { name: "Game Quran", href: "#" },
-                { name: "Daftar Surah", href: "#" },
-                { name: "Contact Me", href: "#" },
-              ]
+    { name: "Home", href: "/" },
+    { name: "Game Quran", href: "#" },
+    { name: "Daftar Surah", href: "#" },
+    { name: "Contact Me", href: "#" },
+  ];
   return (
     <>
       <div className="bg-blue-700 text-white py-8 px-6 mt-10 rounded-t-3xl">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between gap-8">
           {/* Section kiri */}
           <div className="w-full lg:w-1/3">
-            <h1 className="text-3xl font-semibold mb-4">MY MUSLIM ASSISTANT</h1>
+              <h1 className="text-3xl font-semibold mb-4">
+                MY MUSLIM ASSISTANT
+              </h1>
             <div className="flex flex-col space-y-2 text-md">
               {links.map((link, idx) => (
                 <a
@@ -25,7 +27,6 @@ const footer = () => {
                 </a>
               ))}
             </div>
-
             <p className="text-gray-200 text-sm mt-6">
               &copy; 2025 My Muslim Assistant. All rights reserved.
             </p>

@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { IoSearch, IoFilter } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import "../styles/global.css";
+import axios from "axios";
 
 const SURAH_JUZ_MAP = {
   1: [1],
@@ -121,26 +119,11 @@ const SURAH_JUZ_MAP = {
   114: [30],
 };
 
-const QuranSurah = () => {
+const ListSurah = ({ searchQuery, selectedJuz }) => {
   const [surahs, setSurahs] = useState([]);
-  const [selectedSurah, setSelectedSurah] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedJuz, setSelectedJuz] = useState("");
-  const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
 
-  // Convert to Arabic numbers
-  const toArabicNumbers = (num) => {
-    const arabicNumbers = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
-    return num
-      .toString()
-      .split("")
-      .map((digit) => arabicNumbers[digit])
-      .join("");
-  };
-
-  // Fetch all surahs
   useEffect(() => {
     const fetchSurahs = async () => {
       try {
@@ -155,98 +138,59 @@ const QuranSurah = () => {
     fetchSurahs();
   }, []);
 
-  // Enhanced filter function
-  const filteredSurahs = surahs.filter((surah) => {
-    const searchLower = searchQuery.toLowerCase();
-    const matchesSearch =
-      surah.namaLatin.toLowerCase().includes(searchLower) ||
-      surah.arti.toLowerCase().includes(searchLower) ||
-      surah.nomor.toString().includes(searchQuery);
+  const toArabicNumbers = (num) => {
+    const arabicNumbers = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+    return num
+      .toString()
+      .split("")
+      .map((digit) => arabicNumbers[digit])
+      .join("");
+  };
 
-    const matchesJuz = selectedJuz
-      ? SURAH_JUZ_MAP[surah.nomor].includes(parseInt(selectedJuz))
-      : true;
+  const normalize = (text) => {
+  return text
+    .toLowerCase()
+    .replace(/['’\-]/g, "")
+    .replace(/\s+/g, "");
+};
 
-    return matchesSearch && matchesJuz;
-  });
-
-  // Generate array of unique juz numbers
-  const juzNumbers = Array.from({ length: 30 }, (_, i) => i + 1);
 
   const handleSurahClick = (surahNumber) => {
     navigate(`/surah/${surahNumber}`);
   };
 
+  const filteredSurahs = surahs.filter((surah) => {
+    const search = normalize(searchQuery);
+    const namaLatin = normalize(surah.namaLatin);
+    const arti = normalize(surah.arti);
+    const matchesJuz = selectedJuz
+      ? SURAH_JUZ_MAP[surah.nomor].includes(parseInt(selectedJuz))
+      : true;
+    
+    return (
+    namaLatin.includes(search) ||
+    arti.includes(search) ||
+    surah.nomor.toString().includes(search)
+  )&& matchesJuz;
+
+  });
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="text-white">Loading...</div>
+        <div className="text-black">Loading...</div>
       </div>
     );
   }
 
   return (
-  <div className="max-w-7xl mx-auto p-4">
-    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-6 shadow-2xl border border-blue-100">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold bg-blue-500 bg-clip-text text-transparent">
-          Daftar Surah
-        </h2>
-      </div>
-
-      {/* Search and Filter Section */}
-      <div className="mb-8 space-y-4">
-        <div className="relative">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Cari berdasarkan nama, arti, atau nomor surah..."
-            className="w-full bg-white text-gray-900 rounded-2xl px-4 py-4 pl-12 pr-12 border border-blue-200 focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-400 transition-all duration-300 shadow-sm"
-          />
-          <IoSearch
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400"
-            size={20}
-          />
-          <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 hover:bg-blue-50 p-1 rounded-lg transition-colors"
-            onClick={() => setShowFilter(!showFilter)}
-          >
-            <IoFilter className="text-blue-500" size={22} />
-          </button>
-        </div>
-
-        {/* Filter Panel */}
-        {showFilter && (
-          <div className="bg-white rounded-2xl p-4 border border-blue-200 shadow-lg animate-fade-in">
-            <div className="flex items-center space-x-4">
-              <label className="text-gray-700 font-medium text-sm">Filter Juz:</label>
-              <select
-                value={selectedJuz}
-                onChange={(e) => setSelectedJuz(e.target.value)}
-                className="bg-white text-gray-900 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 border border-blue-200 transition-all"
-              >
-                <option value="">Semua Juz</option>
-                {juzNumbers.map((juz) => (
-                  <option key={juz} value={juz}>
-                    Juz {juz}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Results Counter */}
-      <div className="flex justify-between items-center mb-6">
+    <>
+    <div className="flex justify-between items-center mb-6">
         <div className="text-gray-600 text-sm font-medium bg-white px-4 py-2 rounded-full border border-blue-200">
           Ditemukan <span className="text-blue-600 font-bold">{filteredSurahs.length}</span> surah
         </div>
       </div>
-
-      {/* Surah Grid */}
+    {/* Surah Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredSurahs.map((surah) => (
           <div
@@ -255,7 +199,6 @@ const QuranSurah = () => {
             className="group bg-white rounded-2xl p-6 transition-all duration-300 cursor-pointer border border-blue-100 relative overflow-hidden"
           >
             {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-50 to-indigo-50 rounded-bl-3xl opacity-50"></div>
             
             <div className="flex justify-between items-start mb-4 relative z-10">
               <div className="flex-1">
@@ -293,18 +236,9 @@ const QuranSurah = () => {
           </div>
         ))}
       </div>
-
-      {/* Empty State */}
-      {filteredSurahs.length === 0 && (
-        <div className="text-center py-12">
-          <div className="text-gray-400 text-6xl mb-4">📖</div>
-          <div className="text-gray-500 text-lg font-medium">Tidak ada surah yang ditemukan</div>
-          <div className="text-gray-400 text-sm mt-2">Coba ubah kata kunci pencarian atau filter</div>
-        </div>
-      )}
-    </div>
-  </div>
-);
+      
+    </>
+  );
 };
 
-export default QuranSurah;
+export default ListSurah;

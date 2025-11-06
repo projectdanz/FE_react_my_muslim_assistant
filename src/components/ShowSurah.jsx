@@ -4,7 +4,8 @@ import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { IoSettingsSharp } from "react-icons/io5";
-import FooterSection from "./Footer";
+import FooterSection from "../page/Footer";
+import iconLight from "../assets/image/icon-theme-dark.svg";
 import "../styles/global.css";
 
 const ShowSurah = () => {
@@ -93,41 +94,40 @@ const ShowSurah = () => {
   return (
     <>
       {/* Navigation Controls */}
-      <div className=" bg-blue-700 w-full fixed z-999 h-20 top-0 left-0 shadow-md flex flex-col justify-center px-4 py-4">
-        <div className="grid grid-cols-3 items-center w-full mt-3 mb-3 px-15">
+      <div className="bg-blue-700 w-full fixed z-[999] h-16 md:h-20 top-0 left-0 shadow-md flex flex-col justify-center px-3 md:px-6 py-2">
+        <div className="flex md:grid md:grid-cols-3 items-center w-full">
           {/* Kiri */}
-          <div>
-            <a href="/"><h1 className="text-lg font-semibold text-gray-200">My Muslim Assistant</h1></a>
+          <div className="flex items-center">
+            <a href="/">
+              <h1 className="hidden md:block text-lg font-semibold text-gray-200">
+                My Muslim Assistant
+              </h1>
+              <img src={iconLight} alt="Logo" className="md:hidden w-16 h-16 mr-2" />
+            </a>
           </div>
 
           {/* Tengah */}
           <div className="flex justify-center">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2">
+              {/* Previous */}
               <button
                 onClick={handlePrevious}
                 disabled={currentSurahNumber === 1}
-                className="px-4 py-2 bg-white rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="p-1 md:px-4 md:py-2 bg-white rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Surah sebelumnya"
               >
-                <IoChevronBack size={24} />
+                <IoChevronBack className="w-4 h-4 md:w-6 md:h-6" />
               </button>
 
+              {/* Dropdown */}
               <select
                 value={currentSurahNumber}
                 onChange={(e) => handleSurahChange(Number(e.target.value))}
                 className="
-                  px-4 py-2 
-                  bg-white
-                  border border-gray-300
-                  rounded-lg 
-                  text-sm 
-                  text-gray-700 
-                  shadow-sm
-                  focus:outline-none 
-                  focus:ring-2 focus:ring-blue-500
-                  focus:border-blue-500
-                  transition-all duration-200
-                  hover:shadow-md"
+            px-1 py-1 md:px-4 md:py-2
+            bg-white border border-gray-300 rounded-lg text-xs md:text-sm
+            text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200
+          "
               >
                 {surahs.map((surah) => (
                   <option key={surah.nomor} value={surah.nomor}>
@@ -136,46 +136,58 @@ const ShowSurah = () => {
                 ))}
               </select>
 
+              {/* Next */}
               <button
                 onClick={handleNext}
                 disabled={currentSurahNumber === 114}
-                className="px-4 py-2 bg-white rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="p-1 md:px-4 md:py-2 bg-white rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Surah berikutnya"
               >
-                <IoChevronForward size={24} />
+                <IoChevronForward className="w-4 h-4 md:w-6 md:h-6" />
               </button>
             </div>
           </div>
 
           {/* Kanan */}
-          <div className="flex justify-end items-center gap-2">
+          <div className="hidden md:flex justify-end items-center gap-2">
             <div
               className="flex items-center gap-2 group border border-transparent rounded-lg p-1 
-             transition-all duration-200 hover:border-white hover:bg-blue-600"
+        transition-all duration-200 hover:border-white hover:bg-blue-600"
               onClick={() => setShowFilter(!showFilter)}
             >
               <button
                 id="pengaturan"
-                className={`p-2 text-white transition-all duration-200 ${showFilter}`}
+                className={`p-2 text-white`}
                 aria-label="Pengaturan Tampilan"
-                onClick={(e) => e.stopPropagation()} // biar click button tidak double toggle
+                onClick={(e) => e.stopPropagation()}
               >
                 <IoSettingsSharp size={24} />
               </button>
 
               <label
                 htmlFor="pengaturan"
-                className="text-md text-white cursor-pointer transition-colors duration-200 group-hover:text-gray-200"
+                className="hidden md:block text-md text-white cursor-pointer transition-colors duration-200 group-hover:text-gray-200"
               >
                 Pengaturan
               </label>
             </div>
           </div>
+
+          {/* Tombol pengaturan muncul di mobile */}
+          <div className="md:hidden ml-auto">
+            <button
+              className="p-2 text-white"
+              onClick={() => setShowFilter(!showFilter)}
+            >
+              <IoSettingsSharp className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
+
       {/* Display Controls */}
       {showFilter && (
-        <div className="bg-white rounded-xl p-6 mb-6 border border-gray-200 fixed w-2/3 z-50 top-24 left-1/2 transform -translate-x-1/2 shadow-lg">
+        <div className="bg-white rounded-xl p-4 md:p-6 mb-6 border border-gray-200 fixed w-2/3 z-50 top-24 left-1/2 transform -translate-x-1/2 shadow-lg">
           <div className="flex flex-wrap gap-6 justify-between items-center">
             {/* Display Controls */}
             <div className="flex gap-6">
@@ -234,7 +246,7 @@ const ShowSurah = () => {
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto pt-30">
+      <div className="max-w-6xl mx-auto pt-30 px-5 ">
         {/* Surah Content */}
         {selectedSurah && (
           <div>

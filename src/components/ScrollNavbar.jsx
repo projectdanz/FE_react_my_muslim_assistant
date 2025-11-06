@@ -4,7 +4,6 @@ import IconThemeDark from "../assets/image/icon-theme-light.svg";
 const ScrollNavbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
 
-  // ✅ Pindahkan ke luar useEffect
   const handleSmoothScroll = (e, id) => {
     e.preventDefault();
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
